@@ -2,9 +2,9 @@
 
 ### Descripción del proyecto
 
-El Proyecto Final consiste en un foro de viajes donde los usuarios comparten sus experiencias de viajes a través de publicaciones y comentarios. Cabe aclarar que solo las personas registradas en este foro podrán publicar y comentar, las que no lo estén podrán ver las publicaciones y los comentarios.
+El Proyecto Final consiste en un foro de viajes donde los usuarios comparten sus experiencias a través de publicaciones y comentarios. Cabe aclarar que solo las personas registradas en este foro podrán publicar y comentar, las que no lo estén podrán ver las publicaciones y los comentarios.
 
-El frontend se construyó las siguientes tecnologías: 
+El frontend se construyó con las siguientes tecnologías: 
 * Vite. 
 * React. 
 * React Bootstrap.
