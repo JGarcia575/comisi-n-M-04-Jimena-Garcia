@@ -1,0 +1,5 @@
+#Ignorar archivo .env
+.env
+#Ignorar las carpetas node_modules y package-lock.json
+node_modules
+package-lock.json

@@ -1,0 +1,24 @@
+#Ignorar archivos del backend
+backEnd/node_modules
+backEnd/package-lock.json
+backEnd/.env
+
+#Ignorar archivos del frontend
+#Logs
+frontEnd/node_modules
+frontEnd/package-lock.json
+frontEnd/logs
+frontEnd/*.log
+frontEnd/npm-debug.log*
+frontEnd/yarn-debug.log*
+frontEnd/yarn-error.log*
+frontEnd/pnpm-debug.log*
+frontEnd/lerna-debug.log*
+
+# Editor directories and files
+frontEnd/node_modules
+frontEnd/package-lock.json
+frontEnd/dist
+frontEnd/dist-ssr
+frontEnd/*.local
+
