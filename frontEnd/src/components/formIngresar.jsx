@@ -43,7 +43,7 @@ function FormularioIngresar() {
         <Form>
           <Form.Group className="mb-3" controlId="formPlaintextEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="email@example.com" onInput={cambiarEmail}/>
+            <Form.Control type="email" rows={3} placeholder="email@example.com" onInput={cambiarEmail}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formPlaintextPassword">
             <Form.Label>Contraseña</Form.Label>

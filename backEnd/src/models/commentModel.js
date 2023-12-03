@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema, model } = mongoose;
+const { Schema, model, Types } = mongoose;
 
 const CommentSchema = new Schema({
     description: {
@@ -7,10 +7,15 @@ const CommentSchema = new Schema({
         require: true
     },
     author: {
-        type: String
-    }    
+       type: Types.ObjectId,
+       ref: 'User' 
+    },
+    post: {
+        type: Types.ObjectId,
+        ref: 'Post' 
+     },
 });
 
-const Post = model('Comment', CommentSchema);
+const Comment = model('Comment', CommentSchema);
 
-module.exports = Post;
+module.exports = Comment;

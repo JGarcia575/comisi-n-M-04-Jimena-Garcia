@@ -11,7 +11,8 @@ function FormEditar(props) {
 	const { id } = props;
 	const [ title, setTitle ]  = useState('');
 	const [ description, setDescription]  = useState('');
-	const [ author, setAuthor]  = useState('');
+	const [ image, setImage]  = useState('');
+	//const [ author, setAuthor]  = useState('');
 	const [ disabledButton, setDisabledButton]  = useState(false);
 	const [ errors, setErrors] = useState({});
 
@@ -28,10 +29,14 @@ function FormEditar(props) {
 	const cambiarTexto = (e) => {
     	setDescription(e.target.value);
 	};
-  
+	/*
 	const cambiarAutor = (e) => {
     	setAuthor(e.target.value);
 	};
+	*/
+	const cambiarImagen = (e) => {
+		setImage(e.target.value);
+	  };
 
 	const validacionDatos = async () => {
 		let errors = {};
@@ -53,6 +58,7 @@ function FormEditar(props) {
 		// Validar si el objeto errors está vacío
 		if (Object.entries(errors).length === 0) {      
 			await editarPost()
+
 			setDisabledButton(true);
 		};
 	};
@@ -65,7 +71,8 @@ function FormEditar(props) {
 			id: id,
 			title: title,
 			description: description,
-			author: author
+			//author: author
+			imagenURL: image
 		});
 		
 		//si el código de respuesta es 201 redirecciona a la vista principal
@@ -87,7 +94,9 @@ function FormEditar(props) {
 		if (respuesta) {	
 			setTitle(respuesta.title);
 			setDescription(respuesta.description);
-			setAuthor(respuesta.author);
+			//setAuthor(respuesta.author);
+			setImage(respuesta.image);
+
 		} else {
 			setErrors({error: 'Ocurrió un problema al intentar modificar la publicación3.'});
 			setDisabledButton(true);
@@ -106,7 +115,7 @@ function FormEditar(props) {
     	<Form>
     		<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
     			<Form.Label>Título del tema</Form.Label>
-    			<Form.Control type="text" defaultValue={title} onInput={cambiarTitulo}/>
+    			<Form.Control type="text" rows={3} defaultValue={title} onInput={cambiarTitulo}/>
           	{//mostrar el mensaje de error
             	errors.title && ( 
               		<span style={{color: 'red'}}>
@@ -125,11 +134,17 @@ function FormEditar(props) {
               	</span>
             	)
           	}
-        </Form.Group>
+        	</Form.Group>
+			{/*
 			<Form.Group className="mb-3" controlId="exampleForm.ControlInput1" onInput={cambiarAutor}>
 				<Form.Label>Autor</Form.Label>
 				<Form.Control type="text" defaultValue={author}/>
 			</Form.Group>
+			*/}
+			<Form.Group className="mb-3" controlId="exampleForm.ControlInput1" onInput={cambiarImagen}>
+				<Form.Label>URL imagen</Form.Label>
+				<Form.Control type="text" rows={3} defaultValue={imagenURL}/>
+			</Form.Group>		
 			{
 				errors.error && (
 					<Alert  variant="danger" className='text-center text-primary'> 
@@ -137,7 +152,6 @@ function FormEditar(props) {
 					</Alert>
 				)
 			}
-
         	<Button variant="danger" onClick={validacionDatos} disabled={disabledButton}>Editar</Button>{' '}
         	<Button variant="dark" onClick={volver} disabled={disabledButton}>Volver</Button>
       </Form>

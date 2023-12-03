@@ -9,7 +9,8 @@ import  Button  from 'react-bootstrap/Button';
 function Post() {
   const [ title, setTitle ]  = useState('');
   const [ description, setDescription]  = useState('');
-  const [ author, setAuthor]  = useState('');
+  //const [ author, setAuthor]  = useState('');
+  const [ image, setImage]  = useState('');
   const [ disableButton, setDisableButton]  = useState(false);
   const [ errors, setErrors] = useState({});
 
@@ -26,9 +27,13 @@ function Post() {
   const cambiarTexto = (e) => {
     setDescription(e.target.value);
   };
-  
+  /*
   const cambiarAutor = (e) => {
     setAuthor(e.target.value);
+  };
+  */
+  const cambiarImagen = (e) => {
+    setImage(e.target.value);
   };
 
   const verificarDatos = async () => {
@@ -38,18 +43,16 @@ function Post() {
     // esto significa que si el tamaño de title = 0, es falso
     if (!title.length) {
       errors.title = 'El título no puede estar vacío';
-      //setError({title: 'el título no puede estar vacío'});
     };
 
     // Validación para que la descripción no esté vacía, lo mismo que la validación de arriba
     if (!description.length) {
       errors.description = 'La descripción no puede estar vacía';
     };
+
     // Cambiarle el estado al objeto errors
     setErrors(errors);
-
-    //console.log(errors)
-   
+      
     // Validar si el objeto errors está vacío
     if (Object.entries(errors).length === 0) {      
         setDisableButton(true);
@@ -66,7 +69,8 @@ function Post() {
     const post = {
       title: title,
       description: description,
-      author: author
+      //author: author,
+      imagenURL: image
     };
     try {
       const respuesta = await axios.post(url, post);
@@ -87,7 +91,7 @@ function Post() {
     <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Título del tema</Form.Label>
-          <Form.Control type="text" placeholder="¿Cual es el título de tu tema?" onInput={cambiarTitulo}/>
+          <Form.Control type="text" rows={3} placeholder="¿Cual es el título de tu tema?" onInput={cambiarTitulo}/>
           {//mostrar el mensaje de error
             errors.title && ( 
               <span style={{color: 'red'}}>
@@ -107,9 +111,17 @@ function Post() {
             )
           }
         </Form.Group>
+        { /*
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
           <Form.Label>Autor</Form.Label>
           <Form.Control type="text" placeholder="¿cuál es tu nombre?" onInput={cambiarAutor} required/>
+        </Form.Group>
+        
+        */
+        }
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+          <Form.Label>URL publicación</Form.Label>
+          <Form.Control type="text" placeholder="imagen de la publicación" onInput={cambiarImagen}/>
         </Form.Group>
         {
           errors.error && (

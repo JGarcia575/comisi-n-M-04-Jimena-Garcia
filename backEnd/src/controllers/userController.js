@@ -2,6 +2,7 @@ const User = require('./../models/userModel');
 
 const userController = {};
 
+// Ver todos los usuarios
 userController.allUsers = async (req, res) => {
     try {
         const users = await User.find({})
@@ -14,6 +15,7 @@ userController.allUsers = async (req, res) => {
         })
     };
 };
+
 //Ver un usuario
 userController.user = async (req, res) => {
     try {

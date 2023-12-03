@@ -20,6 +20,10 @@ const UserSchema = new Schema({
         unique: true,
         require: true,
         minLength: 8         
+    },
+    avatarURL: {
+        type: String,
+        default: "https://static.vecteezy.com/system/resources/previews/023/181/742/non_2x/fantasy-cat-with-wings-on-black-background-digital-art-painting-ai-generative-image-free-photo.jpg"
     }    
 });
 

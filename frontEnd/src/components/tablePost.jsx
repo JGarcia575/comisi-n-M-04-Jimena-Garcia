@@ -44,11 +44,13 @@ function TablePost(props) {
                     <Button variant="dark" size="sm" className="text-white" onClick={() =>ver(post._id)}>Ver más</Button>
                   </div>                
                 </td>
+                {/*
                 <td style={{backgroundColor: 'rgb(168,220,217)'}}>
                   <div className="text-muted text-center">
                     <p className="">{post.author}</p>
                   </div>
                 </td>
+                */}
                 <td style={{backgroundColor: 'rgb(168,220,217)'}}>
                   <div>
                     <Button variant="primary" onClick={() => editarPost(post._id)}>

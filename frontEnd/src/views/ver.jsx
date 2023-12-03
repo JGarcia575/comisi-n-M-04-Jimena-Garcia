@@ -7,12 +7,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container  from "react-bootstrap/Container";
 
-
 function Ver() {
     const { id } = useParams();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [author, setAuthor] = useState('');
+    const [imagenURL, setImagenURL] = useState('');
+    const [createdAt, setCreatedAt] = useState('');
+    //const [author, setAuthor] = useState('');
 
     const verPost = async () => {
         const respuesta = await verPostPorId(id);
@@ -20,7 +21,9 @@ function Ver() {
         if (respuesta) {
             setTitle(respuesta.title);
             setDescription(respuesta.description);
-            setAuthor(respuesta.author);
+            //setAuthor(respuesta.author);
+            setImagenURL(respuesta.imagenURL);
+            setCreatedAt(respuesta.createdAt);
         } else {
             console.log('No existe la publicación con ese id');
 
@@ -35,9 +38,15 @@ function Ver() {
         <Container fluid className="p-4" style={{backgroundColor: '#07575b'}}>
             <Card style={{backgroundColor: 'rgb(168,220,217)'}}>
                 <Card.Header >
-                    {author} 
+                    {createdAt}
                 </Card.Header>
                 <Card.Body>
+                    <Card.Img 
+                    variant="top" 
+                    src={imagenURL} 
+                    style={{width: '400px', height: '400px'}} 
+                    alt="imagen de la publicación" 
+                    />
                     <Card.Title>
                         {title} 
                     </Card.Title>

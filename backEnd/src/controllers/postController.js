@@ -7,7 +7,9 @@ const postController = {};
 postController.posts = async (req, res) => {
     try {
         const posts = await Post.find({})
-
+        .populate('author', ['-__v', '-avatarURL', '-email', '-password'])
+        .populate('comments')
+                
         res.json(posts);
     } catch (error) {
         res.status(500).json({
@@ -21,7 +23,7 @@ postController.post = async (req, res) => {
     try {
         const { id }  = req.params;    
 
-        const post = await Post.findById(id)
+        const post = await Post.findById(id).populate('author', ['-__v', '-avatarURL', '-email', '-password']);
 
         res.json(post);
 
@@ -42,12 +44,13 @@ postController.post = async (req, res) => {
 //Crear publicación
 postController.newPost = async (req, res) => {
     try {
-        const { title, description, author } = req.body;
+        const { title, description, author, comments } = req.body;
 
         const post = new Post ({
             title: title,
             description: description,
-            author: author
+            author: author,
+            comments: comments
         });
 
         await post.save();
